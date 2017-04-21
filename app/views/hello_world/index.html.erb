@@ -1,3 +1,18 @@
 <h1>Hello World</h1>
-<%= react_component("HelloWorld", props: @hello_world_props, prerender: false) %>
 
+<div id="content-to-be-reloaded-container">
+  This div contains a react component and it's whole content will be reloaded on an
+  ajax call. So we need to call reactOnRailsPageLoaded on the js call.
+
+  <%= render 'hello_world/content_to_be_reloaded' %>
+</div>
+
+<%= button_to "Reload Content!", hello_world_reload_path, remote: true %>
+
+<div>
+  This div here contains another react component that doesn't need to be re-rendered,
+  since it's content wasn't reloaded via ajax. So the call to reactOnRailsPageLoaded
+  should actually only be scoped to the div above: #content-to-be-reloaded-container
+
+  <%= react_component("HelloWorld2", props: @hello_world2_props) %>
+</div>

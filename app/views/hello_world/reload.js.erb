@@ -1,0 +1,5 @@
+var content = "<%= escape_javascript( render 'hello_world/content_to_be_reloaded' ) %>"
+$('#content-to-be-reloaded-container').html(content);
+
+// react_component HelloWorld will not show without this line here:
+ReactOnRails.reactOnRailsPageLoaded();
